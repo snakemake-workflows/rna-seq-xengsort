@@ -56,6 +56,8 @@ The [profiles `README.md`](profiles/README.md) provides more details.
   - https://orcid.org/0000-0002-9138-4112
 - Pankaj Singroul
   - German Cancer Consortium (DKTK), partner site Essen-Düsseldorf, A partnership between DKFZ and University Hospital Essen
+  - Bridge Institute of Experimental Tumor Therapy (BIT), Division of Solid Tumor Translational Oncology (DKTK), West German Cancer Center, University Hospital Essen, University of Duisburg-Essen, Essen, Germany
+  - Institute of Cell Biology (Cancer Research), University Hospital Essen, University of Duisburg-Essen, Essen, Germany
   - https://orcid.org/0000-0001-9855-1828
 
 ## References
