@@ -1,8 +1,59 @@
-sample_sheet: "config/samples.tsv"
+unit_sheet: "config/units.tsv"
 
-get_genome:
-  ncbi_ftp: https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/146/045/GCF_000146045.2_R64/GCF_000146045.2_R64_genomic.fna.gz
+resources:
+  ref:
+    # ensembl species names for the graft species (species) and the host_species:
+    # These species need to be available for download via the Ensembl FTP site.
+    # For a quick check, see the Ensembl species list:
+    # https://www.ensembl.org/info/about/species.html
+    # For full valid species names, consult the respective table for the release
+    # you specify, for example for ‘115’ this is at:
+    # https://ftp.ensembl.org/pub/release-115/species_EnsemblVertebrates.txt
+    # And to browse available downloads in more detail, see the FTP server:
+    # https://ftp.ensembl.org/pub/
+    species: homo_sapiens
+    host_species: mus_musculus
+    # ensembl release version:
+    # Update this to the latest working version, when you first set up a new
+    # analysis on a dataset. You can usually find the latest release in the
+    # Ensembl blog, by looking at the latest posts of the release category:
+    # https://www.ensembl.info/category/01-release/
+    # Later, it only makes sense to update (or downgrade) the release versions
+    # if either (a) the version you are using consistently fails to download
+    # (some Ensembl release versions are just broken) or (b) you know that a
+    # newer version will include changes that will fix some error or adds
+    # transcripts that will be relevant to your analysis.
+    release: "115"
+    # genome build:
+    # Usually, this should just be the main build listed in:
+    # https://ftp.ensembl.org/pub/release-115/species_EnsemblVertebrates.txt
+    # For example, for homo_sapiens, you strip the assembly column entry
+    # "GRCh38.p12" down to "GRCh38". If in doubt, navigate to the respective
+    # cdna folder on the FTP server, and look for the correct build in the
+    # file names there. For example "GRCh38" in:
+    # https://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/
+    build: GRCh38
 
-simulate_reads:
-  read_length: 100
-  read_number: 10000
+xengsort:
+  index:
+    # number of k-mers to store in the hash table
+    # This depends on the reference genomes used, for details see:
+    # https://gitlab.com/genomeinformatics/xengsort/#how-to-build-an-index
+    # 4.5 billion is the recommended size for 25-mers on the combination of the
+    # genomes and transcriptomes of both human and mouse combined.
+    nobjects: 4500000000
+    # size of k-mers to store in the hash table
+    # The human-mouse evaluation in the main xengsort paper recommends a k-mer
+    # size of 25, see section "Table size and uniqueness of k-mers":
+    # https://link.springer.com/article/10.1186/s13015-021-00181-w#Sec10
+    kmersize: 25
+    # number of elements that can be stored in an individual bucket
+    # The documentation just states 4 as the default.
+    bucketsize: 4
+    # desired fill rate of the hash table
+    # A value used in the original evaluation, which worked great there,
+    # is 0.88. The default value, which was also used in a benchmarking study
+    # where xengsort outperformed all other tools, is 0.85. See:
+    # https://www.nature.com/articles/s41698-025-00902-z#Sec1
+    # https://github.com/mukund-bhandari/PDX_Sorting_Protocols/blob/b9a32fc34c6c09d5baeb69adcb1fa6c0d4213e71/Protocols_and_tool_codes/1_xengsort.sh#L23
+    fill: 0.85

@@ -2,37 +2,58 @@ $schema: "https://json-schema.org/draft/2020-12/schema"
 type: object
 description: main configuration schema for the workflow
 properties:
-  sample_sheet:
+  unit_sheet:
     type: string
     description: path to sample sheet, mandatory
     default: config/samples.tsv
 
-  get_genome:
+  resources:
     type: object
     properties:
-      ncbi_ftp:
-        type: string
-        description: URL for genome retrieval from NCBI FTP server
-        default: ""
-    required:
-      - ncbi_ftp
+      ref:
+        type: object
+        properties:
+          species:
+            type: string
+          host_species:
+            type: string
+          release:
+            type: string
+          build:
+            type: string
+        required:
+          - species
+          - host_species
+          - release
+          - build
 
-  simulate_reads:
+  xengsort:
     type: object
     properties:
-      read_length:
-        type: integer
-        description: length of target reads in bp
-        default: 100
-      read_number:
-        type: integer
-        description: number of total reads to be simulated
-        default: 10000
+      index:
+        type: object
+        properties:
+          nobjects:
+            type: integer
+            description: number of k-mers to store in the hash table
+          kmersize:
+            type: integer
+            description: size of k-mers to store in the hash table
+          bucketsize:
+            type: integer
+            description: number of elements that can be stored in an individual bucket
+          fill:
+            type: number
+            description: desired fill rate of the hash table
+        required:
+          - nobjects
+          - kmersize
+          - bucketsize
+          - fill
     required:
-      - read_length
-      - read_number
+      - index
 
 required:
-  - sample_sheet
-  - get_genome
-  - simulate_reads
+  - unit_sheet
+  - resources
+  - xengsort
