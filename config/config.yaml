@@ -33,6 +33,7 @@ resources:
     # file names there. For example "GRCh38" in:
     # https://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/
     build: GRCh38
+    host_build: GRCm39
 
 xengsort:
   index:
