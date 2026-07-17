@@ -64,4 +64,6 @@ The [profiles `README.md`](profiles/README.md) provides more details.
 
 > Zentgraf, J., Rahmann, S. Fast lightweight accurate xenograft sorting. Algorithms Mol Biol 16, 2 (2021). https://doi.org/10.1186/s13015-021-00181-w
 
+> Chen, Shifu. 2025. “ fastp 1.0: An Ultra-Fast All-Round Tool for FASTQ Data Quality Control and Preprocessing.” iMeta 4, e70078. https://doi.org/10.1002/imt2.70078
+
 > Köster, J., Mölder, F., Jablonski, K. P., Letcher, B., Hall, M. B., Tomkins-Tinch, C. H., Sochat, V., Forster, J., Lee, S., Twardziok, S. O., Kanitz, A., Wilm, A., Holtgrewe, M., Rahmann, S., & Nahnsen, S. _Sustainable data analysis with Snakemake_. F1000Research, 10:33, 10, 33, **2021**. https://doi.org/10.12688/f1000research.29032.2.
