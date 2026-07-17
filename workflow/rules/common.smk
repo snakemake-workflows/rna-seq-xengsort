@@ -23,6 +23,7 @@ wildcard_constraints:
 
 # helper functions
 
+
 def column_missing_or_empty(column_name, dataframe, sample, unit):
     """Check whether a column is missing or empty."""
     if column_name in dataframe.columns:
@@ -40,11 +41,14 @@ def column_missing_or_empty(column_name, dataframe, sample, unit):
 
 # final results requested in rule all, the default_target
 
+
 def get_final_results(wildcards):
     final_results = []
 
     for entry in units.itertuples(index=False):
-        if column_missing_or_empty(column_name="fq2", dataframe=units, sample=entry.sample, unit=entry.unit):
+        if column_missing_or_empty(
+            column_name="fq2", dataframe=units, sample=entry.sample, unit=entry.unit
+        ):
             final_results.extend(
                 expand(
                     [
@@ -58,7 +62,9 @@ def get_final_results(wildcards):
                     sample=entry.sample,
                     unit=entry.unit,
                     graft_species=lookup(within=config, dpath="resources/ref/species"),
-                    host_species=lookup(within=config, dpath="resources/ref/host_species"),
+                    host_species=lookup(
+                        within=config, dpath="resources/ref/host_species"
+                    ),
                 )
             )
         else:
@@ -75,7 +81,9 @@ def get_final_results(wildcards):
                     sample=entry.sample,
                     unit=entry.unit,
                     graft_species=lookup(within=config, dpath="resources/ref/species"),
-                    host_species=lookup(within=config, dpath="resources/ref/host_species"),
+                    host_species=lookup(
+                        within=config, dpath="resources/ref/host_species"
+                    ),
                     read=["1", "2"],
                 )
             )
