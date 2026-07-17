@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.0.0 (2026-07-17)
+
+
+### Features
+
+* create updated units.tsv / unit_sheet ([074f7f4](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/074f7f402c7c16fb36025a64b484c3aacc769eef))
+* one giant commit with an initial version that should have running tests, let's see... ([7150213](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/7150213807a38877a96289e0dae9eab7c8809b00))
+
+
+### Bug Fixes
+
+* also include host_build in example config/config.yaml ([15bdd09](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/15bdd09a10b97cefa45ef12b2ed5a981a1d0c1e1))
+* correct conda-package name to r-tidyverse ([bc8f97b](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/bc8f97b40c3bc3474c4e0844bd064bd5a2e04d3c))
+* more wildcard_constraints for host_species and graft_species ([7615a0e](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/7615a0e691973d86545f3db52042e3baa3fc2d7e))
+* pandas f***ery ([47208a8](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/47208a89412ccf7857e3927b1af3a5b35b251d83))
+* prefix extraction for paired-end xengsort rule ([fa5d152](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/fa5d15254b0b2ec4c26256fa8065675f6bc9804c))
+* properly handle graft_species and host_species wildcards ([e556be2](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/e556be228659e84855c8de866d89a8b6c4379a21))
+* specify build for both species ([2c761b1](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/2c761b14f548684ff2bef699a2ba1a95c03e4e62))
+* unit_sheet script ([f9bb47f](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/f9bb47f38dbac79223bbc6e062c8c41fc5b74de0))
+* wildcard constraints for sample and unit ([8a5f18c](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/8a5f18c1b536f13e359e78f7254f40671f2a8f47))
+
 ## [1.3.0](https://github.com/snakemake-workflows/snakemake-workflow-template/compare/v1.2.0...v1.3.0) (2026-03-27)
 
 
