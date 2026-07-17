@@ -3,8 +3,11 @@ import pandas as pd
 from snakemake.utils import validate
 
 # read sample sheet
-units = pd.read_csv(config["unit_sheet"], sep="\t", dtype=str)
-
+units = pd.read_csv(config["unit_sheet"], sep="\t", dtype=str, comment="#").set_index(
+    ["sample", "unit"],
+    drop=False,
+    verify_integrity=True,
+)
 
 # validate sample sheet and config file
 validate(units, schema="../schemas/units.schema.yaml")
@@ -28,21 +31,14 @@ def column_missing_or_empty(column_name, dataframe, sample, unit):
         return True
 
 
-def is_single_end(sample, unit):
-    """Determine whether unit is single-end."""
-    return column_missing_or_empty(
-        "fq2", units, sample, unit
-    ) and column_missing_or_empty("bam_paired", units, sample, unit)
-
-
 # final results requested in rule all, the default_target
 
 
 def get_final_results(wildcards):
     final_results = []
 
-    for entry in units.rows:
-        if is_single_end(sample=entry.sample, unit=entry.unit):
+    for entry in units.itertuples(index=False):
+        if column_missing_or_empty(column_name="fq2", dataframe=units, sample=entry.sample, unit=entry.unit):
             final_results.extend(
                 expand(
                     [
@@ -54,7 +50,7 @@ def get_final_results(wildcards):
                         "<results>/xengsort_classify/{sample}/{sample}_{unit}-sites.fq.gz",
                     ],
                     sample=entry.sample,
-                    unit=unit.sample,
+                    unit=entry.unit,
                 )
             )
         else:
@@ -69,7 +65,7 @@ def get_final_results(wildcards):
                         "<results>/xengsort_classify/{sample}/{sample}_{unit}-sites.{read}.fq.gz",
                     ],
                     sample=entry.sample,
-                    unit=unit.sample,
+                    unit=entry.unit,
                     read=["1", "2"],
                 )
             )
