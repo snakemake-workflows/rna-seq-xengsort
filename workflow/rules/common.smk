@@ -13,8 +13,15 @@ units = pd.read_csv(config["unit_sheet"], sep="\t", dtype=str, comment="#").set_
 validate(units, schema="../schemas/units.schema.yaml")
 validate(config, schema="../schemas/config.schema.yaml")
 
-# helper functions
+# wildcard constraints
 
+
+wildcard_constraints:
+    sample="|".join(units["sample"]),
+    unit="|".join(units["unit"]),
+
+
+# helper functions
 
 def column_missing_or_empty(column_name, dataframe, sample, unit):
     """Check whether a column is missing or empty."""
@@ -32,7 +39,6 @@ def column_missing_or_empty(column_name, dataframe, sample, unit):
 
 
 # final results requested in rule all, the default_target
-
 
 def get_final_results(wildcards):
     final_results = []
