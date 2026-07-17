@@ -85,7 +85,7 @@ rule xengsort_classify_paired:
     threads: 8
     params:
         index_prefix=subpath(input.hash, strip_suffix=".hash"),
-        unit_prefix=subpath(output.graft, strip_suffix="-graft.fq.gz"),
+        unit_prefix=subpath(output.graft_1, strip_suffix="-graft.1.fq.gz"),
     shell:
         "xengsort classify "
         " --index {params.index_prefix} "
