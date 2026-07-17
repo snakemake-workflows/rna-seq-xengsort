@@ -6,7 +6,7 @@ library(tidyverse)
 
 rlang::global_entrace()
 
-unit_sheet <- read_tsv(snakemake@input[["unit_sheet"]]) |>
+unit_sheet <- read_tsv(snakemake@input[["unit_sheet"]], col_types = cols(.default = "c")) |>
   select(-c("fq1", "fq2"))
 
 xengsort_results <- enframe(
@@ -30,12 +30,12 @@ xengsort_results <- enframe(
     cols_remove = FALSE
   ) |>
   mutate(
-    rest = str_remove(rest, c("/", sample, "_"))
+    rest = str_remove(rest, str_c("/", sample, "_"))
   ) |>
   separate_wider_regex(
     rest,
     c(
-      unit = ".+",
+      unit = "^.+",
       "\\.",
       snakemake@params[["graft_species"]],
       "_",
@@ -46,13 +46,13 @@ xengsort_results <- enframe(
       snakemake@params[["host_build"]],
       "-graft\\.",
       fq = "(?:[12]\\.)?",
-      "\\.fq\\.gz$"
+      "fq\\.gz$"
     )
   ) |>
   mutate(
     fq = case_when(
-      fq == "1" ~ "fq1",
-      fq == "2" ~ "fq2",
+      fq == "1." ~ "fq1",
+      fq == "2." ~ "fq2",
       .default = "fq1"
     )    
   ) |>
@@ -63,4 +63,4 @@ xengsort_results <- enframe(
 
 new_unit_sheet <- unit_sheet |> left_join(xengsort_results, by = join_by(sample, unit))
 
-write_tsv(new_unit_sheet, snakemake@output[["unit_sheet"]])
+write_tsv(new_unit_sheet, snakemake@output[["unit_sheet"]], na = "")
