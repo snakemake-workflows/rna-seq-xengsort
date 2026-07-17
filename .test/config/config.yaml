@@ -11,8 +11,8 @@ resources:
     # https://ftp.ensembl.org/pub/release-115/species_EnsemblVertebrates.txt
     # And to browse available downloads in more detail, see the FTP server:
     # https://ftp.ensembl.org/pub/
-    species: homo_sapiens
-    host_species: mus_musculus
+    species: saccharomyces_cerevisiae
+    host_species: caenorhabditis_elegans
     # ensembl release version:
     # Update this to the latest working version, when you first set up a new
     # analysis on a dataset. You can usually find the latest release in the
@@ -32,8 +32,8 @@ resources:
     # cdna folder on the FTP server, and look for the correct build in the
     # file names there. For example "GRCh38" in:
     # https://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/
-    build: GRCh38
-    host_build: GRCm39
+    build: R64-1-1
+    host_build: WBcel235
 
 xengsort:
   index:
@@ -42,7 +42,7 @@ xengsort:
     # https://gitlab.com/genomeinformatics/xengsort/#how-to-build-an-index
     # 4.5 billion is the recommended size for 25-mers on the combination of the
     # genomes and transcriptomes of both human and mouse combined.
-    nobjects: 4500000000
+    nobjects: 113000000
     # size of k-mers to store in the hash table
     # The human-mouse evaluation in the main xengsort paper recommends a k-mer
     # size of 25, see section "Table size and uniqueness of k-mers":
