@@ -19,6 +19,8 @@ validate(config, schema="../schemas/config.schema.yaml")
 wildcard_constraints:
     sample="|".join(units["sample"]),
     unit="|".join(units["unit"]),
+    graft_species=lookup(within=config, dpath="resources/ref/species"),
+    host_species=lookup(within=config, dpath="resources/ref/host_species"),
 
 
 # helper functions
