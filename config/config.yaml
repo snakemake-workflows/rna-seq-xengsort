@@ -41,7 +41,11 @@ xengsort:
     # This depends on the reference genomes used, for details see:
     # https://gitlab.com/genomeinformatics/xengsort/#how-to-build-an-index
     # 4.5 billion is the recommended size for 25-mers on the combination of the
-    # genomes and transcriptomes of both human and mouse combined.
+    # genomes and transcriptomes of both human and mouse combined. For other
+    # cases, the sum of the genome lengths is supposed to be a reasonable
+    # (over-)estimate of this parameter, see the 2nd paragraph in the `Insert`
+    # section of the Methods in:
+    # https://link.springer.com/article/10.1186/s13015-021-00181-w#Sec2
     nobjects: 4500000000
     # size of k-mers to store in the hash table
     # The human-mouse evaluation in the main xengsort paper recommends a k-mer
