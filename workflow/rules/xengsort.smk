@@ -95,3 +95,22 @@ rule xengsort_classify_paired:
         " --mode count "
         " --threads {threads} "
         ">{log} 2>&1 "
+
+
+rule create_updated_units_sheet:
+    input:
+        xengsort_results=get_xengsort_results,
+        unit_sheet=lookup(within=config, dpath="unit_sheet"),
+    output:
+        unit_sheet="<results>/units.tsv",
+    log:
+        "<logs>/updated_units_sheet.log",
+    conda:
+        "../envs/tidyverse.yaml"
+    params:
+        graft_species=lookup(within=config, dpath="resources/ref/species"),
+        graft_build=lookup(within=config, dpath="resources/ref/build"),
+        host_species=lookup(within=config, dpath="resources/ref/host_species"),
+        host_build=lookup(within=config, dpath="resources/ref/host_build"),
+    script:
+        "../scripts/create_updated_units_sheet.R"

@@ -25,6 +25,17 @@ wildcard_constraints:
     host_build=lookup(within=config, dpath="resources/ref/host_build"),
 
 
+# final results requested in rule all, the default_target
+
+
+def get_final_results(wildcards):
+    final_results = [
+        "<results>/units.tsv",
+    ]
+
+    return final_results
+
+
 # helper functions
 
 
@@ -43,17 +54,18 @@ def column_missing_or_empty(column_name, dataframe, sample, unit):
         return True
 
 
-# final results requested in rule all, the default_target
+# input functions
 
 
-def get_final_results(wildcards):
-    final_results = []
+def get_xengsort_results(wildcards):
+
+    xengsort_results = []
 
     for entry in units.itertuples(index=False):
         if column_missing_or_empty(
             column_name="fq2", dataframe=units, sample=entry.sample, unit=entry.unit
         ):
-            final_results.extend(
+            xengsort_results.extend(
                 expand(
                     [
                         "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-ambiguous.fq.gz",
@@ -74,7 +86,7 @@ def get_final_results(wildcards):
                 )
             )
         else:
-            final_results.extend(
+            xengsort_results.extend(
                 expand(
                     [
                         "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-ambiguous.{read}.fq.gz",
@@ -96,4 +108,4 @@ def get_final_results(wildcards):
                 )
             )
 
-    return final_results
+    return xengsort_results
