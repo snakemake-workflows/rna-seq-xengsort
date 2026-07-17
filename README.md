@@ -4,6 +4,7 @@
 [![GitHub actions status](https://github.com/snakemake-workflows/rna-seq-xengsort/workflows/Tests/badge.svg?branch=main)](https://github.com/snakemake-workflows/rna-seq-xengsort/actions?query=branch%3Amain+workflow%3ATests)
 [![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
 [![workflow catalog](https://img.shields.io/badge/Snakemake%20workflow%20catalog-darkgreen)](https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/snakemake-workflows/rna-seq-xengsort)
+[![DOI](https://zenodo.org/badge/1302768535.svg)](https://doi.org/10.5281/zenodo.21419632)
 
 A Snakemake workflow for `separating host and graft sequencing reads from RNAseq data using xengsort. `
 
