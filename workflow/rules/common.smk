@@ -42,30 +42,34 @@ def get_final_results(wildcards):
             final_results.extend(
                 expand(
                     [
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}-ambiguous.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}-both.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}-graft.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}-host.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}-neither.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}-sites.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-ambiguous.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-both.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-graft.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-host.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-neither.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-sites.fq.gz",
                     ],
                     sample=entry.sample,
                     unit=entry.unit,
+                    graft_species=lookup(within=config, dpath="resources/ref/species"),
+                    host_species=lookup(within=config, dpath="resources/ref/host_species"),
                 )
             )
         else:
             final_results.extend(
                 expand(
                     [
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}-ambiguous.{read}.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}-both.{read}.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}-graft.{read}.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}-host.{read}.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}-neither.{read}.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}-sites.{read}.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-ambiguous.{read}.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-both.{read}.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-graft.{read}.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-host.{read}.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-neither.{read}.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-sites.{read}.fq.gz",
                     ],
                     sample=entry.sample,
                     unit=entry.unit,
+                    graft_species=lookup(within=config, dpath="resources/ref/species"),
+                    host_species=lookup(within=config, dpath="resources/ref/host_species"),
                     read=["1", "2"],
                 )
             )

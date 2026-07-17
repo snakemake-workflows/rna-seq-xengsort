@@ -12,8 +12,8 @@ The workflow is designed, so that its output can easily be used in the [`rna-seq
 You will most likely want to provide the output that `xengsort classify` determined as coming from the `graft` genome as the `fq1` and (optionall) `fq2` files in [that workflow's units sheet](https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/snakemake-workflows/rna-seq-kallisto-sleuth.html#units-sheet).
 They will usually be either of the following two options:
 
-1. For single-end reads: `<results>/xengsort_classify/{sample}/{sample}_{unit}-graft.fq.gz"`
-2. For paired-end reads: `<results>/xengsort_classify/{sample}/{sample}_{unit}-graft.1.fq.gz"` and `<results>/xengsort_classify/{sample}/{sample}_{unit}-graft.2.fq.gz"`
+1. For single-end reads: `<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-graft.fq.gz"`
+2. For paired-end reads: `<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-graft.1.fq.gz"` and `<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-graft.2.fq.gz"`
 
 
 ## Running the workflow

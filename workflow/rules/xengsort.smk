@@ -37,14 +37,14 @@ rule xengsort_classify_single:
         info="<resources>/xengsort_index/{graft_species}_{host_species}.cdna_dna.info",
         fq1="<results>/trimmed/{sample}/{sample}_{unit}.fastq.gz",
     output:
-        ambiguous="<results>/xengsort_classify/{sample}/{sample}_{unit}-ambiguous.fq.gz",
-        both="<results>/xengsort_classify/{sample}/{sample}_{unit}-both.fq.gz",
-        graft="<results>/xengsort_classify/{sample}/{sample}_{unit}-graft.fq.gz",
-        host="<results>/xengsort_classify/{sample}/{sample}_{unit}-host.fq.gz",
-        neither="<results>/xengsort_classify/{sample}/{sample}_{unit}-neither.fq.gz",
-        sites="<results>/xengsort_classify/{sample}/{sample}_{unit}-sites.fq.gz",
+        ambiguous="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-ambiguous.fq.gz",
+        both="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-both.fq.gz",
+        graft="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-graft.fq.gz",
+        host="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-host.fq.gz",
+        neither="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-neither.fq.gz",
+        sites="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-sites.fq.gz",
     log:
-        "<logs>/xengsort_classify/{sample}/{sample}_{unit}.xengsort_classify_single.log",
+        "<logs>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}.xengsort_classify_single.log",
     conda:
         "../envs/xengsort.yaml"
     params:
@@ -66,20 +66,20 @@ rule xengsort_classify_paired:
         fq1="<results>/trimmed/{sample}/{sample}_{unit}.1.fastq.gz",
         fq2="<results>/trimmed/{sample}/{sample}_{unit}.2.fastq.gz",
     output:
-        ambiguous_1="<results>/xengsort_classify/{sample}/{sample}_{unit}-ambiguous.1.fq.gz",
-        ambiguous_2="<results>/xengsort_classify/{sample}/{sample}_{unit}-ambiguous.2.fq.gz",
-        both_1="<results>/xengsort_classify/{sample}/{sample}_{unit}-both.1.fq.gz",
-        both_2="<results>/xengsort_classify/{sample}/{sample}_{unit}-both.2.fq.gz",
-        graft_1="<results>/xengsort_classify/{sample}/{sample}_{unit}-graft.1.fq.gz",
-        graft_2="<results>/xengsort_classify/{sample}/{sample}_{unit}-graft.2.fq.gz",
-        host_1="<results>/xengsort_classify/{sample}/{sample}_{unit}-host.1.fq.gz",
-        host_2="<results>/xengsort_classify/{sample}/{sample}_{unit}-host.2.fq.gz",
-        neither_1="<results>/xengsort_classify/{sample}/{sample}_{unit}-neither.1.fq.gz",
-        neither_2="<results>/xengsort_classify/{sample}/{sample}_{unit}-neither.2.fq.gz",
-        sites_1="<results>/xengsort_classify/{sample}/{sample}_{unit}-sites.1.fq.gz",
-        sites_2="<results>/xengsort_classify/{sample}/{sample}_{unit}-sites.2.fq.gz",
+        ambiguous_1="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-ambiguous.1.fq.gz",
+        ambiguous_2="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-ambiguous.2.fq.gz",
+        both_1="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-both.1.fq.gz",
+        both_2="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-both.2.fq.gz",
+        graft_1="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-graft.1.fq.gz",
+        graft_2="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-graft.2.fq.gz",
+        host_1="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-host.1.fq.gz",
+        host_2="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-host.2.fq.gz",
+        neither_1="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-neither.1.fq.gz",
+        neither_2="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-neither.2.fq.gz",
+        sites_1="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-sites.1.fq.gz",
+        sites_2="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-sites.2.fq.gz",
     log:
-        "<logs>/xengsort_classify/{sample}/{sample}_{unit}.xengsort_classify_paired.log",
+        "<logs>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}.xengsort_classify_paired.log",
     conda:
         "../envs/xengsort.yaml"
     threads: 8
