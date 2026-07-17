@@ -1,14 +1,14 @@
 rule xengsort_index:
     input:
-        host_cdna="<resources>/{host_species}.cdna.fa.gz",
-        host_dna="<resources>/{host_species}.dna.fa.gz",
-        graft_cdna="<resources>/{graft_species}.cdna.fa.gz",
-        graft_dna="<resources>/{graft_species}.dna.fa.gz",
+        host_cdna="<resources>/{host_species}_{host_build}.cdna.fa.gz",
+        host_dna="<resources>/{host_species}_{host_build}.dna.fa.gz",
+        graft_cdna="<resources>/{graft_species}_{graft_build}.cdna.fa.gz",
+        graft_dna="<resources>/{graft_species}_{graft_build}.dna.fa.gz",
     output:
-        hash="<resources>/xengsort_index/{graft_species}_{host_species}.cdna_dna.hash",
-        info="<resources>/xengsort_index/{graft_species}_{host_species}.cdna_dna.info",
+        hash="<resources>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.hash",
+        info="<resources>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.info",
     log:
-        "<logs>/xengsort_index/{graft_species}_{host_species}.cdna_dna.hash",
+        "<logs>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.hash",
     conda:
         "../envs/xengsort.yaml"
     threads: 12
@@ -33,18 +33,18 @@ rule xengsort_index:
 
 rule xengsort_classify_single:
     input:
-        hash="<resources>/xengsort_index/{graft_species}_{host_species}.cdna_dna.hash",
-        info="<resources>/xengsort_index/{graft_species}_{host_species}.cdna_dna.info",
+        hash="<resources>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.hash",
+        info="<resources>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.info",
         fq1="<results>/trimmed/{sample}/{sample}_{unit}.fastq.gz",
     output:
-        ambiguous="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-ambiguous.fq.gz",
-        both="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-both.fq.gz",
-        graft="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-graft.fq.gz",
-        host="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-host.fq.gz",
-        neither="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-neither.fq.gz",
-        sites="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-sites.fq.gz",
+        ambiguous="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-ambiguous.fq.gz",
+        both="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-both.fq.gz",
+        graft="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-graft.fq.gz",
+        host="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-host.fq.gz",
+        neither="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-neither.fq.gz",
+        sites="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-sites.fq.gz",
     log:
-        "<logs>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}.xengsort_classify_single.log",
+        "<logs>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}.xengsort_classify_single.log",
     conda:
         "../envs/xengsort.yaml"
     params:
@@ -61,25 +61,25 @@ rule xengsort_classify_single:
 
 rule xengsort_classify_paired:
     input:
-        hash="<resources>/xengsort_index/{graft_species}_{host_species}.cdna_dna.hash",
-        info="<resources>/xengsort_index/{graft_species}_{host_species}.cdna_dna.info",
+        hash="<resources>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.hash",
+        info="<resources>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.info",
         fq1="<results>/trimmed/{sample}/{sample}_{unit}.1.fastq.gz",
         fq2="<results>/trimmed/{sample}/{sample}_{unit}.2.fastq.gz",
     output:
-        ambiguous_1="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-ambiguous.1.fq.gz",
-        ambiguous_2="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-ambiguous.2.fq.gz",
-        both_1="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-both.1.fq.gz",
-        both_2="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-both.2.fq.gz",
-        graft_1="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-graft.1.fq.gz",
-        graft_2="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-graft.2.fq.gz",
-        host_1="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-host.1.fq.gz",
-        host_2="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-host.2.fq.gz",
-        neither_1="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-neither.1.fq.gz",
-        neither_2="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-neither.2.fq.gz",
-        sites_1="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-sites.1.fq.gz",
-        sites_2="<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-sites.2.fq.gz",
+        ambiguous_1="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-ambiguous.1.fq.gz",
+        ambiguous_2="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-ambiguous.2.fq.gz",
+        both_1="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-both.1.fq.gz",
+        both_2="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-both.2.fq.gz",
+        graft_1="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-graft.1.fq.gz",
+        graft_2="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-graft.2.fq.gz",
+        host_1="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-host.1.fq.gz",
+        host_2="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-host.2.fq.gz",
+        neither_1="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-neither.1.fq.gz",
+        neither_2="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-neither.2.fq.gz",
+        sites_1="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-sites.1.fq.gz",
+        sites_2="<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-sites.2.fq.gz",
     log:
-        "<logs>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}.xengsort_classify_paired.log",
+        "<logs>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}.xengsort_classify_paired.log",
     conda:
         "../envs/xengsort.yaml"
     threads: 8

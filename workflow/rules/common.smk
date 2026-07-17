@@ -20,7 +20,9 @@ wildcard_constraints:
     sample="|".join(units["sample"]),
     unit="|".join(units["unit"]),
     graft_species=lookup(within=config, dpath="resources/ref/species"),
+    graft_build=lookup(within=config, dpath="resources/ref/build"),
     host_species=lookup(within=config, dpath="resources/ref/host_species"),
+    host_build=lookup(within=config, dpath="resources/ref/host_build"),
 
 
 # helper functions
@@ -54,38 +56,42 @@ def get_final_results(wildcards):
             final_results.extend(
                 expand(
                     [
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-ambiguous.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-both.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-graft.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-host.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-neither.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-sites.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-ambiguous.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-both.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-graft.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-host.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-neither.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-sites.fq.gz",
                     ],
                     sample=entry.sample,
                     unit=entry.unit,
                     graft_species=lookup(within=config, dpath="resources/ref/species"),
+                    graft_build=lookup(within=config, dpath="resources/ref/build"),
                     host_species=lookup(
                         within=config, dpath="resources/ref/host_species"
                     ),
+                    host_build=lookup(within=config, dpath="resources/ref/host_build"),
                 )
             )
         else:
             final_results.extend(
                 expand(
                     [
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-ambiguous.{read}.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-both.{read}.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-graft.{read}.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-host.{read}.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-neither.{read}.fq.gz",
-                        "<results>/xengsort_classify/{sample}/{sample}_{unit}_{graft_species}_{host_species}-sites.{read}.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-ambiguous.{read}.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-both.{read}.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-graft.{read}.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-host.{read}.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-neither.{read}.fq.gz",
+                        "<results>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}-sites.{read}.fq.gz",
                     ],
                     sample=entry.sample,
                     unit=entry.unit,
                     graft_species=lookup(within=config, dpath="resources/ref/species"),
+                    graft_build=lookup(within=config, dpath="resources/ref/build"),
                     host_species=lookup(
                         within=config, dpath="resources/ref/host_species"
                     ),
+                    host_build=lookup(within=config, dpath="resources/ref/host_build"),
                     read=["1", "2"],
                 )
             )
