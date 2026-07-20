@@ -8,7 +8,7 @@ rule xengsort_index:
         hash="<resources>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.hash",
         info="<resources>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.info",
     log:
-        "<logs>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.hash",
+        "<logs>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.log",
     conda:
         "../envs/xengsort.yaml"
     threads: 12
