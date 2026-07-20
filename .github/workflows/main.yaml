@@ -41,15 +41,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+
+      - name: Dryrun workflow
+        uses: snakemake/snakemake-github-action@v2
         with:
-          submodules: recursive
+          directory: .test
+          snakefile: workflow/Snakefile
+          args: "--sdm conda --cores all --dryrun"
 
       - name: Test workflow
         uses: snakemake/snakemake-github-action@v2
         with:
           directory: .test
           snakefile: workflow/Snakefile
-          args: "--sdm conda --show-failed-logs --cores all --conda-cleanup-pkgs cache"
+          args: "--sdm conda --cores all"
 
       - name: Test report
         uses: snakemake/snakemake-github-action@v2
