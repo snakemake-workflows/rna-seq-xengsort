@@ -6,13 +6,16 @@
 [![workflow catalog](https://img.shields.io/badge/Snakemake%20workflow%20catalog-darkgreen)](https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/snakemake-workflows/rna-seq-xengsort)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21419632.svg)](https://doi.org/10.5281/zenodo.21419632)
 
-A Snakemake workflow for separating host and graft sequencing reads from RNAseq data using xengsort:
+A Snakemake workflow for separating host and graft sequencing reads from RNAseq data using [`xengsort`](https://gitlab.com/genomeinformatics/xengsort):
 
 - [Usage](#usage)
 - [Deployment options](#deployment-options)
 - [Workflow profiles](#workflow-profiles)
 - [Authors](#authors)
 - [References](#references)
+
+`xengsort` was chosen, as it clearly outperformed all other tools in [a recent independent benchmarking study](https://doi.org/10.1038/s41698-025-00902-z) that also thoroughly evaluated the effects of mouse host genome contamination.
+For full citations, see the [references below](#references)
 
 ## Usage
 
@@ -63,6 +66,8 @@ The [profiles `README.md`](profiles/README.md) provides more details.
 ## References
 
 > Zentgraf, J., Rahmann, S. Fast lightweight accurate xenograft sorting. Algorithms Mol Biol 16, 2 (2021). https://doi.org/10.1186/s13015-021-00181-w
+
+> Bhandari, M., He, F., Rogojina, A. et al. Benchmarking mouse contamination removing protocols in patient-derived xenografts genomic profiling. npj Precis. Onc. 9, 113 (2025). https://doi.org/10.1038/s41698-025-00902-z
 
 > Chen, Shifu. 2025. “ fastp 1.0: An Ultra-Fast All-Round Tool for FASTQ Data Quality Control and Preprocessing.” iMeta 4, e70078. https://doi.org/10.1002/imt2.70078
 
