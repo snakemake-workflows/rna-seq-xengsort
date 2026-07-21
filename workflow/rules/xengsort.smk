@@ -8,7 +8,7 @@ rule xengsort_index:
         hash="<resources>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.hash",
         info="<resources>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.info",
     log:
-        "<logs>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.hash",
+        "<logs>/xengsort_index/{graft_species}_{graft_build}.{host_species}_{host_build}.cdna_dna.log",
     conda:
         "../envs/xengsort.yaml"
     threads: 12
@@ -95,6 +95,41 @@ rule xengsort_classify_paired:
         " --mode count "
         " --threads {threads} "
         ">{log} 2>&1 "
+
+
+rule create_xengsort_logs_summary:
+    input:
+        xengsort_logs=get_xengsort_logs,
+    output:
+        xengsort_logs_summary="<results>/xengsort_classify/all_units_xengsort_classification.{graft_species}_{graft_build}.{host_species}_{host_build}.tsv",
+    log:
+        "<logs>/xengsort_classify/create_xengsort_logs_summary.{graft_species}_{graft_build}.{host_species}_{host_build}.log",
+    conda:
+        "../envs/tidyverse.yaml"
+    script:
+        "../scripts/create_xengsort_logs_summary.R"
+
+
+rule create_xengsort_summary_plot_across_units:
+    input:
+        xengsort_logs_summary="<results>/xengsort_classify/all_units_xengsort_classification.{graft_species}_{graft_build}.{host_species}_{host_build}.tsv",
+    output:
+        html=report(
+            "<results>/xengsort_classify/all_units_xengsort_classification.{graft_species}_{graft_build}.{host_species}_{host_build}.html",
+            caption="../report/xengsort.rst",
+            category="quality control",
+            subcategory="xengsort",
+            labels={
+                "command": "classify",
+                "sample_unit": "all",
+            },
+        ),
+    log:
+        "<logs>/xengsort_classify/create_xengsort_summary_plot_across_units.{graft_species}_{graft_build}.{host_species}_{host_build}.log",
+    conda:
+        "../envs/altair.yaml"
+    script:
+        "../scripts/create_xengsort_logs_plot_across_units.py"
 
 
 rule create_updated_units_sheet:
