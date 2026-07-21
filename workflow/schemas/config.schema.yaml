@@ -13,19 +13,27 @@ properties:
       ref:
         type: object
         properties:
-          species:
-            type: string
-          host_species:
-            type: string
           release:
             type: string
+            description: Ensembl release to use
+          species:
+            type: string
+            description: Ensembl name of grafted species
+          host_species:
+            type: string
+            description: Ensembl name of host species
           build:
             type: string
+            description: build of grafted species
+          host_build:
+            type: string
+            description: build of host species
         required:
+          - release
           - species
           - host_species
-          - release
           - build
+          - host_build
 
   xengsort:
     type: object
