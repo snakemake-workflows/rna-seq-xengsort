@@ -131,29 +131,17 @@ def get_xengsort_logs(wildcards):
         ):
             xengsort_logs.extend(
                 expand(
-                    "<logs>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}.xengsort_classify_single.log",
+                    "<logs>/xengsort_classify/{sample}/{sample}_{unit}.{{graft_species}}_{{graft_build}}.{{host_species}}_{{host_build}}.xengsort_classify_single.log",
                     sample=entry.sample,
                     unit=entry.unit,
-                    graft_species=lookup(within=config, dpath="resources/ref/species"),
-                    graft_build=lookup(within=config, dpath="resources/ref/build"),
-                    host_species=lookup(
-                        within=config, dpath="resources/ref/host_species"
-                    ),
-                    host_build=lookup(within=config, dpath="resources/ref/host_build"),
                 )
             )
         else:
             xengsort_logs.extend(
                 expand(
-                    "<logs>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}.xengsort_classify_paired.log",
+                    "<logs>/xengsort_classify/{sample}/{sample}_{unit}.{{graft_species}}_{{graft_build}}.{{host_species}}_{{host_build}}.xengsort_classify_paired.log",
                     sample=entry.sample,
                     unit=entry.unit,
-                    graft_species=lookup(within=config, dpath="resources/ref/species"),
-                    graft_build=lookup(within=config, dpath="resources/ref/build"),
-                    host_species=lookup(
-                        within=config, dpath="resources/ref/host_species"
-                    ),
-                    host_build=lookup(within=config, dpath="resources/ref/host_build"),
                 )
             )
 
