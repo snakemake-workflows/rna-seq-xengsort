@@ -10,7 +10,7 @@ xengsort_logs <- unlist(snakemake@input[["xengsort_logs"]]) |>
   map(
     \(x)
       read_file(x) |>
-      str_match("prefix\thost\tgraft\tambiguous\tboth\tneither\n.*\n") |>
+      str_extract("prefix\thost\tgraft\tambiguous\tboth\tneither\n.*\n") |>
       I() |>
       read_tsv(col_types="ciiiii")
   ) |>
