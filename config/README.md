@@ -3,11 +3,12 @@
 This workflow is a best-practice workflow for removing host genome reads from RNAseq data from xenograft samples using [xengsort](https://gitlab.com/genomeinformatics/xengsort).
 The workflow is built using [snakemake](https://snakemake.readthedocs.io/en/stable/) and consists of the following steps:
 
-1. Adapter trimming with fastp.
-2. Download of the host and graft reference genomes and transcriptomes.
+1. Trim adapters with fastp.
+2. Download the host and graft reference genomes and transcriptomes from Ensembl.
 3. Create a `xengsort index` hash from the reference.
 4. Use `xengsort classify` to sort reads into host and graft categories.
 5. Create an updated `units.tsv` for use in downstream analysis steps.
+6. Create a `xengsort classify` summary plot for the snakemake report.
 
 The workflow is designed, so that its output can easily be used in the [`rna-seq-kallisto-sleuth` workflow](https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/snakemake-workflows/rna-seq-kallisto-sleuth.html).
 You will most likely want to provide the output that `xengsort classify` determined as coming from the `graft` genome as the `fq1` and (optionall) `fq2` files in [that workflow's units sheet](https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/snakemake-workflows/rna-seq-kallisto-sleuth.html#units-sheet).
