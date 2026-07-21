@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.0](https://github.com/snakemake-workflows/rna-seq-xengsort/compare/v1.0.0...v1.1.0) (2026-07-21)
+
+
+### Features
+
+* add xengsort stats plot to report ([db9d164](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/db9d1642d725deb22cecfd05ba088d0bb1979629))
+* parse and plot xengsort classify logs for snakemake report inclusion ([e7e8ca0](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/e7e8ca0110f4fb81c54c8fa2d063d3d797baba7c))
+
+
+### Bug Fixes
+
+* give xengsort_index log file the `.log` suffix, fixing copy-pasta ([546a6c0](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/546a6c07906dbb09518054ae2371d8536227bbaf))
+* simplify get_xengsort_logs() function by using wildcards that we now determine in the final output ([afa8ac2](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/afa8ac2fd481a0b358a627d1144ebc81bf0e00a8))
+* use str_extract instead of str_match, which is syntactically more accurate and reduces matching complexity ([9b42c9d](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/9b42c9d5acdbab18701a469448d3a7789c4e3da0))
+
 ## 1.0.0 (2026-07-17)
 
 
