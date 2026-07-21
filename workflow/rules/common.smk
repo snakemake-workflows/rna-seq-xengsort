@@ -38,11 +38,8 @@ def get_final_results(wildcards):
             "<results>/xengsort_classify/all_units_xengsort_classification.{graft_species}_{graft_build}.{host_species}_{host_build}.html",
             graft_species=lookup(within=config, dpath="resources/ref/species"),
             graft_build=lookup(within=config, dpath="resources/ref/build"),
-            host_species=lookup(
-                within=config, dpath="resources/ref/host_species"
-            ),
+            host_species=lookup(within=config, dpath="resources/ref/host_species"),
             host_build=lookup(within=config, dpath="resources/ref/host_build"),
-
         )
     )
 
@@ -161,4 +158,3 @@ def get_xengsort_logs(wildcards):
             )
 
     return xengsort_logs
-

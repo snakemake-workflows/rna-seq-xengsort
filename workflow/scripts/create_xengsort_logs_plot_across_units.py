@@ -10,15 +10,19 @@ xengsort_logs_summary = pd.read_csv(
     sep="\t",
 )
 
-stacked_horizontal_bars = alt.Chart(xengsort_logs_summary).mark_bar().encode(
-    x='sum(number_of_reads):Q',
-    y='sample_unit:N',
-    color='species:N',
-    tooltip=[
-        "sample_unit:N",
-        "species:N",
-        "number_of_reads:Q",
-    ],
+stacked_horizontal_bars = (
+    alt.Chart(xengsort_logs_summary)
+    .mark_bar()
+    .encode(
+        x="sum(number_of_reads):Q",
+        y="sample_unit:N",
+        color="species:N",
+        tooltip=[
+            "sample_unit:N",
+            "species:N",
+            "number_of_reads:Q",
+        ],
+    )
 )
 
 stacked_horizontal_bars.save(snakemake.output["html"])

@@ -103,12 +103,12 @@ rule create_xengsort_logs_summary:
     output:
         xengsort_logs_summary="<results>/xengsort_classify/all_units_xengsort_classification.{graft_species}_{graft_build}.{host_species}_{host_build}.tsv",
     log:
-        "<logs>/xengsort_classify/create_xengsort_logs_summary.{graft_species}_{graft_build}.{host_species}_{host_build}.log"
+        "<logs>/xengsort_classify/create_xengsort_logs_summary.{graft_species}_{graft_build}.{host_species}_{host_build}.log",
     conda:
         "../envs/tidyverse.yaml"
     script:
         "../scripts/create_xengsort_logs_summary.R"
-    
+
 
 rule create_xengsort_summary_plot_across_units:
     input:
@@ -125,12 +125,12 @@ rule create_xengsort_summary_plot_across_units:
             },
         ),
     log:
-        "<logs>/xengsort_classify/create_xengsort_summary_plot_across_units.{graft_species}_{graft_build}.{host_species}_{host_build}.log"
+        "<logs>/xengsort_classify/create_xengsort_summary_plot_across_units.{graft_species}_{graft_build}.{host_species}_{host_build}.log",
     conda:
         "../envs/altair.yaml"
     script:
         "../scripts/create_xengsort_logs_plot_across_units.py"
-    
+
 
 rule create_updated_units_sheet:
     input:
