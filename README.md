@@ -6,14 +6,13 @@
 [![workflow catalog](https://img.shields.io/badge/Snakemake%20workflow%20catalog-darkgreen)](https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/snakemake-workflows/rna-seq-xengsort)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21419632.svg)](https://doi.org/10.5281/zenodo.21419632)
 
-A Snakemake workflow for `separating host and graft sequencing reads from RNAseq data using xengsort. `
+A Snakemake workflow for separating host and graft sequencing reads from RNAseq data using xengsort:
 
-- [Snakemake workflow: `rna-seq-xengsort`](#snakemake-workflow-name)
-  - [Usage](#usage)
-  - [Deployment options](#deployment-options)
-  - [Workflow profiles](#workflow-profiles)
-  - [Authors](#authors)
-  - [References](#references)
+- [Usage](#usage)
+- [Deployment options](#deployment-options)
+- [Workflow profiles](#workflow-profiles)
+- [Authors](#authors)
+- [References](#references)
 
 ## Usage
 
