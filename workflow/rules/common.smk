@@ -33,6 +33,19 @@ def get_final_results(wildcards):
         "<results>/units.tsv",
     ]
 
+    final_results.extend(
+        expand(
+            "<results>/xengsort_classify/all_units_xengsort_classification.{graft_species}_{graft_build}.{host_species}_{host_build}.html",
+            graft_species=lookup(within=config, dpath="resources/ref/species"),
+            graft_build=lookup(within=config, dpath="resources/ref/build"),
+            host_species=lookup(
+                within=config, dpath="resources/ref/host_species"
+            ),
+            host_build=lookup(within=config, dpath="resources/ref/host_build"),
+
+        )
+    )
+
     return final_results
 
 
@@ -109,3 +122,43 @@ def get_xengsort_results(wildcards):
             )
 
     return xengsort_results
+
+
+def get_xengsort_logs(wildcards):
+
+    xengsort_logs = []
+
+    for entry in units.itertuples(index=False):
+        if column_missing_or_empty(
+            column_name="fq2", dataframe=units, sample=entry.sample, unit=entry.unit
+        ):
+            xengsort_logs.extend(
+                expand(
+                    "<logs>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}.xengsort_classify_single.log",
+                    sample=entry.sample,
+                    unit=entry.unit,
+                    graft_species=lookup(within=config, dpath="resources/ref/species"),
+                    graft_build=lookup(within=config, dpath="resources/ref/build"),
+                    host_species=lookup(
+                        within=config, dpath="resources/ref/host_species"
+                    ),
+                    host_build=lookup(within=config, dpath="resources/ref/host_build"),
+                )
+            )
+        else:
+            xengsort_logs.extend(
+                expand(
+                    "<logs>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}.xengsort_classify_paired.log",
+                    sample=entry.sample,
+                    unit=entry.unit,
+                    graft_species=lookup(within=config, dpath="resources/ref/species"),
+                    graft_build=lookup(within=config, dpath="resources/ref/build"),
+                    host_species=lookup(
+                        within=config, dpath="resources/ref/host_species"
+                    ),
+                    host_build=lookup(within=config, dpath="resources/ref/host_build"),
+                )
+            )
+
+    return xengsort_logs
+

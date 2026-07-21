@@ -1,0 +1,1 @@
+``xengsort`` composition of reads from all sequencing units into graft species (``{{ snakemake.wildcards.graft_species }}``, build: ``{{ snakemake.wildcards.graft_build }}``) and host species (``{{ snakemake.wildcards.host_species }}``, build: ``{{ snakemake.wildcards.host_build }}``).
