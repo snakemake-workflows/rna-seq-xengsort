@@ -1,6 +1,6 @@
 ## Workflow overview
 
-This workflow is a best-practice workflow for removing host genome reads from RNAseq data from xenograft samples using [xengsort](https://gitlab.com/genomeinformatics/xengsort).
+This workflow is a best-practice workflow for removing host genome reads from RNAseq data from xenograft samples using [xengsort](https://gitlab.com/genomeinformatics/xengsort), a tool that was recently shown to outperform all the other tools in this domain in [an independent benchmarking study](https://doi.org/10.1038/s41698-025-00902-z).
 The workflow is built using [snakemake](https://snakemake.readthedocs.io/en/stable/) and consists of the following steps:
 
 1. Trim adapters with fastp.
