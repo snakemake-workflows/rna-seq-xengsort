@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.0](https://github.com/snakemake-workflows/rna-seq-xengsort/compare/v1.1.0...v1.2.0) (2026-09-25)
+
+
+### Features
+
+* also ask for memory for xengsort classify rules ([32f11c8](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/32f11c8d1fa94bee0bbd7c58d4793dfde90e293e))
+* automatically determine RAM necessary for xengsort index ([32d340a](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/32d340ad9b95946a9c032f9c4a2844ba247214a3))
+* automatically determine RAM necessary for xengsort index and xengsort classify, make classify parallel on single end data ([4273717](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/42737179c75ad81b31df6213969acaf9d62884b6))
+
+
+### Bug Fixes
+
+* also make xengsort classify for single end data use multiple threads ([539ccf6](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/539ccf6b80e5627c837c6b0bd2881226b4eaf328))
+* make it a slightly smaller memory request for xengsort index ([3ac6c76](https://github.com/snakemake-workflows/rna-seq-xengsort/commit/3ac6c767d42439d079bd541404a25558f75dc309))
+
 ## [1.1.0](https://github.com/snakemake-workflows/rna-seq-xengsort/compare/v1.0.0...v1.1.0) (2026-07-21)
 
 
