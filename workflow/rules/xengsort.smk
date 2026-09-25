@@ -13,7 +13,7 @@ rule xengsort_index:
         "../envs/xengsort.yaml"
     threads: 12
     resources:
-        mem_mb=lambda wc, input: input.size_mb * 18,
+        mem_mb=lambda wc, input: input.size_mb * 15,
     params:
         prefix=subpath(output.hash, strip_suffix=".hash"),
         nobjects=lookup(within=config, dpath="xengsort/index/nobjects"),
