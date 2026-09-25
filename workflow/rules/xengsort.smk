@@ -49,17 +49,19 @@ rule xengsort_classify_single:
         "<logs>/xengsort_classify/{sample}/{sample}_{unit}.{graft_species}_{graft_build}.{host_species}_{host_build}.xengsort_classify_single.log",
     conda:
         "../envs/xengsort.yaml"
+    threads: 8
+    resources:
+        mem_mb=lambda wc, input: input.size_mb,
     params:
         index_prefix=subpath(input.hash, strip_suffix=".hash"),
         unit_prefix=subpath(output.graft, strip_suffix="-graft.fq.gz"),
-    resources:
-        mem_mb=lambda wc, input: input.size_mb,
     shell:
         "xengsort classify "
         " --index {params.index_prefix} "
         " --fastq {input.fq1} "
         " --prefix {params.unit_prefix} "
         " --mode count "
+        " --threads {threads} "
         ">{log} 2>&1 "
 
 
