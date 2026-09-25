@@ -52,6 +52,8 @@ rule xengsort_classify_single:
     params:
         index_prefix=subpath(input.hash, strip_suffix=".hash"),
         unit_prefix=subpath(output.graft, strip_suffix="-graft.fq.gz"),
+    resources:
+        mem_mb=lambda wc, input: input.size_mb,
     shell:
         "xengsort classify "
         " --index {params.index_prefix} "
@@ -85,6 +87,8 @@ rule xengsort_classify_paired:
     conda:
         "../envs/xengsort.yaml"
     threads: 8
+    resources:
+        mem_mb=lambda wc, input: input.size_mb,
     params:
         index_prefix=subpath(input.hash, strip_suffix=".hash"),
         unit_prefix=subpath(output.graft_1, strip_suffix="-graft.1.fq.gz"),
